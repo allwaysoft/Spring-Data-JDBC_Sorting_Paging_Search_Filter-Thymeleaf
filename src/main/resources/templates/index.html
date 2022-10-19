@@ -87,15 +87,15 @@
                     <option th:each="i: ${#numbers.sequence(1, totalPages)}" th:text="${i}"
                             th:value="${i}"
                             th:selected="${i} == ${currentPage}">2</option>
-                </select>页，总计<span th:text="${totalPages}">99</span>页 &nbsp; <a th:if="${currentPage > 1}"
+                </select>页，总计<span th:text="${totalPages}">99</span>页 &nbsp; <a href="First.html" th:if="${currentPage > 1}"
                                                                  th:href="@{'/page/1?sortField=' + ${sortField} + '&sortDir=' + ${sortDir} +'&pageSize=' + ${pageSize}+ ${keyword != null ? '&keyword=' + keyword : ''}}">|&lt;最前页</a>
-                <span th:unless="${currentPage > 1}">|&lt;最前页</span> &nbsp;&nbsp; <a
-                    th:if="${currentPage > 1}"
+                <span th:unless="${currentPage > 1}">|&lt;最前页</span> &nbsp;&nbsp; <a href="Previous.html"
+                                                                                        th:if="${currentPage > 1}"
                     th:href="@{'/page/' + ${currentPage - 1} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir} +'&pageSize=' + ${pageSize}+ ${keyword != null ? '&keyword=' + keyword : ''}}">&lt;前一页</a>
-                <span th:unless="${currentPage > 1}">&lt;前一页</span> &nbsp;&nbsp;  <a th:if="${currentPage < totalPages}"
+                <span th:unless="${currentPage > 1}">&lt;前一页</span> &nbsp;&nbsp;  <a href="Next.html" th:if="${currentPage < totalPages}"
                                                                                      th:href="@{'/page/' + ${currentPage + 1} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir} +'&pageSize=' + ${pageSize}+ ${keyword != null ? '&keyword=' + keyword : ''}}">后一页&gt;</a>
                 <span th:unless="${currentPage < totalPages}">后一页&gt;</span>
-                &nbsp;&nbsp; <a th:if="${currentPage < totalPages}"
+                &nbsp;&nbsp; <a href="Last.html" th:if="${currentPage < totalPages}"
                                 th:href="@{'/page/' + ${totalPages} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir} +'&pageSize=' + ${pageSize}+ ${keyword != null ? '&keyword=' + keyword : ''}}">最后页&gt;|</a>
                 <span th:unless="${currentPage < totalPages}">最后页&gt;|</span>
                 &nbsp;&nbsp;
