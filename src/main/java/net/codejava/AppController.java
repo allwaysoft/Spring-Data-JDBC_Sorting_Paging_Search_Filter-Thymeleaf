@@ -2,7 +2,6 @@ package net.codejava;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,6 +9,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
@@ -35,8 +35,8 @@ public class AppController {
     }
 
     @GetMapping("/page/{pageNumber}")
-    public String listByPage(Model model, @PathVariable("pageNumber") int currentPage, @Param("pageSize") int pageSize,
-            @Param("sortField") String sortField, @Param("sortDir") String sortDir, @Param("keyword") String keyword) {
+    public String listByPage(Model model, @PathVariable("pageNumber") int currentPage, @RequestParam("pageSize") int pageSize,
+            @RequestParam("sortField") String sortField, @RequestParam("sortDir") String sortDir, @RequestParam(value = "keyword", required = false) String keyword) {
 
         Page<Product> page = service.listAll(currentPage, pageSize, sortField, sortDir, keyword);
 
